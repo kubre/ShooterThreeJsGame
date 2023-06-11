@@ -8,14 +8,14 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000
 );
+camera.position.z = 5;
+camera.position.y = 2;
 
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshBasicMaterial({ color: 0xffaa00 });
 const cube = new THREE.Mesh(geometry, material);
 cube.position.y = 0.5;
 scene.add(cube);
-camera.position.z = 5;
-camera.position.y = 2;
 
 
 const groundGeometry = new THREE.PlaneGeometry(10, 10);
@@ -35,6 +35,8 @@ new OrbitControls(camera, renderer.domElement);
 
 function animate() {
     requestAnimationFrame(animate);
+    camera.position.x = cube.position.x;
+    camera.position.z = cube.position.z + 5;
     renderer.render(scene, camera);
 }
 animate();
